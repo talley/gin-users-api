@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "host=localhost user=postgres password=Iamsmart27! dbname=northwind port=5432 sslmode=disable"
+  }
+}
