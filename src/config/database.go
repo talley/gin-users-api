@@ -1,7 +1,7 @@
 package config
 
 import (
-	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 
@@ -31,12 +31,20 @@ func ConnectDB() {
 	DB = db
 }
 func GetConnectionString(use_dsn bool) string {
-	if use_dsn {
-		var cfg Config
+	if use_dsn == true {
+		/*var cfg Config
 		file, _ := os.ReadFile("config.json")
 		json.Unmarshal(file, &cfg)
 		cs1 := cfg.ConnectionStrings.DefaultConnection
-		return cs1
+		*/
+		dsn := os.Getenv("DB_DSN")
+
+		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		fmt.Println(db)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return dsn
 	} else {
 		cs2 := "host=localhost user=postgres password=Iamsmart27! dbname=northwind port=5432 sslmode=disable"
 		return cs2
