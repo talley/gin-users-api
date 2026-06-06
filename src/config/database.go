@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -44,11 +43,12 @@ func GetConnectionString(use_dsn bool) string {
 		}
 		dsn := os.Getenv("DB_DSN")
 
-		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		/*db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		fmt.Println(db)
 		if err != nil {
 			log.Fatal(err)
 		}
+		*/
 		return dsn
 	} else {
 		cs2 := "host=localhost user=postgres password=Iamsmart27! dbname=northwind port=5432 sslmode=disable"
