@@ -37,6 +37,11 @@ func GetConnectionString(use_dsn bool) string {
 		json.Unmarshal(file, &cfg)
 		cs1 := cfg.ConnectionStrings.DefaultConnection
 		*/
+		err := godotenv.Load()
+
+		if err != nil {
+			log.Println("No .env found")
+		}
 		dsn := os.Getenv("DB_DSN")
 
 		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
