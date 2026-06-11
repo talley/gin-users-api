@@ -1,6 +1,8 @@
 package config
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 
@@ -31,17 +33,19 @@ func ConnectDB() {
 }
 func GetConnectionString(use_dsn bool) string {
 	if use_dsn == true {
-		/*var cfg Config
+		var cfg Config
 		file, _ := os.ReadFile("config.json")
 		json.Unmarshal(file, &cfg)
 		cs1 := cfg.ConnectionStrings.DefaultConnection
-		*/
+		if len(cs1) > 0 {
+			fmt.Println(cs1)
+		}
 		err := godotenv.Load()
 
 		if err != nil {
 			log.Println("No .env found")
 		}
-		dsn := os.Getenv("DB_DSN")
+		dsn := os.Getenv("DB_PG_DSN")
 
 		/*db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 		fmt.Println(db)
